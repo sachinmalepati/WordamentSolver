@@ -28,8 +28,7 @@ def dfs(graph,start,leng,path,wl):
 				leng-=1
 		
 
-#Graph Defined
-#Here we can take input also - Future Work!
+# Input The Wordament
 inw = {}
 x='a'
 for i in range(4):
@@ -55,9 +54,8 @@ def loadWords():
 
 wordlist = loadWords()
 
-#print wordlist
 
-for i in range(3,7):
+for i in range(3,9):
 	for j in words:
 		path = [j]
 		dfs(words,j,1,path,i)
