@@ -1,17 +1,49 @@
 import sys
 import string
 
+
+
+
+#Binary Search
+def binarySearch(alist,item):
+	f=0
+	l=len(alist)-1
+	exist=False
+	while f<=l and not exist:
+		mid=(f+l)//2
+		if alist[mid] == item:
+			exist=True
+		else:
+			if item<alist[mid]:
+				l=mid-1
+			else:
+				f=mid+1
+	return exist
+
+
 #DFS to find patterns
 def dfs(graph,start,leng,path,wl):
 
 	if leng>=wl:
 		word=''
 		for w in path:
-			word += w
+			word += inw[w]
 
 		#Check word if it is valid or not 
-		if word in wordlist:
+		
+
+		#Binary Search
+
+		#Working Fine - Fast :D
+		if binarySearch(wordlist,word):
 			print word
+
+		#Linear Search
+
+		#Working Fine - But slow
+
+		#if word in wordlist:
+		#	print word
 
 
 		return
@@ -27,9 +59,15 @@ def dfs(graph,start,leng,path,wl):
 				leng-=1
 		
 
-#Graph Defined
-#Here we can take input also - Future Work!
-words = {'A' : ['B','E','F'] , 'B' : ['A','C','E','F','G'], 'C' : ['B','F','G','H','D'], 'D' : ['C','G','H'], 'E' : ['A','B','F','I','J'] , 'F' : ['A','B','C','E','G','I','J','K'], 'G' : ['B','C','D','F','H','J','K','L'], 'H' : ['D','G','C','K','L'],'M' : ['I','J','N'] , 'N' : ['M','I','J','K','O'], 'O' : ['N','J','K','L','P'], 'P' : ['O','K','L'], 'I' : ['E','F','J','N','M'] , 'J' : ['E','F','G','M','N','I','O','K'], 'K' : ['G','O','N','F','H','J','P','L'], 'L' : ['H','G','O','K','P'] }
+# Input The Wordament
+inw = {}
+x='a'
+for i in range(4):
+	for j in range(4):
+		inw[x]=raw_input('Wordament-' + '('+str(i)+','+str(j)+') : ')
+		x=chr(ord(x)+1)
+
+words = {'a' : ['b','e','f'] , 'b' : ['a','c','e','f','g'], 'c' : ['b','f','g','h','d'], 'd' : ['c','g','h'], 'e' : ['a','b','f','i','j'] , 'f' : ['a','b','c','e','g','i','j','k'], 'g' : ['b','c','d','f','h','j','k','l'], 'h' : ['d','g','c','k','l'],'m' : ['i','j','n'] , 'n' : ['m','i','j','k','o'], 'o' : ['n','j','k','l','p'], 'p' : ['o','k','l'], 'i' : ['e','f','j','n','m'] , 'j' : ['e','f','g','m','n','i','o','k'], 'k' : ['g','o','n','f','h','j','p','l'], 'l' : ['h','g','o','k','p'] }
 
 WORDLIST_FILENAME = "words.txt"
 
@@ -46,8 +84,10 @@ def loadWords():
 	return wordlist
 
 wordlist = loadWords()
+wordlist = sorted(wordlist)
 
-for i in range(3,9):
+
+for i in range(3,10):
 	for j in words:
 		path = [j]
 		dfs(words,j,1,path,i)
