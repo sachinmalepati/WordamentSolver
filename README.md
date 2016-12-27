@@ -9,14 +9,6 @@ Run the program and enter the characters row wise.
 
 Problems :
 
-- Time can be reduced 
-
-    Time taken :-
-
-	- 6 length words - less than a minute
-	- 7 lenght words - Approx a minute
-	- 8 lenght words - Approx 3 minutes
-
 - If same word can be obtained in different ways, then all of them  are shown. Instead we need only one.
 
 - In wordament some times each grid will contain two characters. So modify the program to solve this problem.
