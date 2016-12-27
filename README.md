@@ -9,7 +9,6 @@ Run the program and enter the characters row wise.
 
 Problems :
 
-- Updating the word.txt file so that more words could be found. Presently ~50% of words could be found.
 
 - if suppose there is no word starting with a particular prefix then we can ignore the prefix for furthermore calculations(words of greater length with same prefix)
 
