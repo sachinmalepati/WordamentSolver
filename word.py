@@ -35,8 +35,10 @@ def dfs(graph,start,leng,path,wl):
 		#Binary Search
 
 		#Working Fine - Fast :D
-		if binarySearch(wordlist,word):
-			print word
+		if word not in foundWords:
+			if binarySearch(wordlist,word):
+				print word
+				foundWords.append(word)				
 
 		#Linear Search
 
@@ -85,9 +87,11 @@ def loadWords():
 
 wordlist = loadWords()
 wordlist = sorted(wordlist)
-
+foundWords = []
 
 for i in range(3,10):
 	for j in words:
 		path = [j]
 		dfs(words,j,1,path,i)
+
+print len(foundWords),": words found"
