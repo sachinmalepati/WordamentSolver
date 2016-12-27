@@ -71,22 +71,23 @@ for i in range(4):
 
 words = {'a' : ['b','e','f'] , 'b' : ['a','c','e','f','g'], 'c' : ['b','f','g','h','d'], 'd' : ['c','g','h'], 'e' : ['a','b','f','i','j'] , 'f' : ['a','b','c','e','g','i','j','k'], 'g' : ['b','c','d','f','h','j','k','l'], 'h' : ['d','g','c','k','l'],'m' : ['i','j','n'] , 'n' : ['m','i','j','k','o'], 'o' : ['n','j','k','l','p'], 'p' : ['o','k','l'], 'i' : ['e','f','j','n','m'] , 'j' : ['e','f','g','m','n','i','o','k'], 'k' : ['g','o','n','f','h','j','p','l'], 'l' : ['h','g','o','k','p'] }
 
-WORDLIST_FILENAME = "words.txt"
+WORDLIST_FILENAME = "words1.txt"
 
 def loadWords():
 	global wordlist
 	print "Loading word list from file..."
 	# inFile: file
-	inFile = open(WORDLIST_FILENAME, 'r', 0)
+	inFile = open(WORDLIST_FILENAME, 'r')
 	# line: string
-	line = inFile.readline()
+	line = inFile.read()
     	# wordlist: list of strings
-	wordlist = string.split(line)
+	wordlist = line.split()
 	print "  ", len(wordlist), "words loaded."
 	return wordlist
 
+#convert text file to a list of words
 wordlist = loadWords()
-wordlist = sorted(wordlist)
+#wordlist = sorted(wordlist)
 foundWords = []
 
 for i in range(3,10):
