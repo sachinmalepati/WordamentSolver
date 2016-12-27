@@ -1,6 +1,6 @@
 import sys
 import string
-
+import re
 
 
 
@@ -20,33 +20,38 @@ def binarySearch(alist,item):
 				f=mid+1
 	return exist
 
+def validate(word):
+	#Binary Search
+	#Working Fine - Fast :D
+	if word not in foundWords:
+		if binarySearch(wordlist,word):
+			print word
+			foundWords.append(word)	
+	return
+
 
 #DFS to find patterns
 def dfs(graph,start,leng,path,wl):
 
 	if leng>=wl:
 		word=''
-		for w in path:
-			word += inw[w]
-
-		#Check word if it is valid or not 
-		
-
-		#Binary Search
-
-		#Working Fine - Fast :D
-		if word not in foundWords:
-			if binarySearch(wordlist,word):
-				print word
-				foundWords.append(word)				
-
-		#Linear Search
-
-		#Working Fine - But slow
-
-		#if word in wordlist:
-		#	print word
-
+		word1=''
+		word2=''
+		if '$' in path:
+			for w in path:
+				if inw[w] == '$':
+					word1 += multi[0]
+					word2 += multi[1]
+				else:
+					word1 += inw[w]
+					word2 += inw[w]
+			validate(word1)
+			validate(word2)
+		else:
+			for w in path:
+				word += inw[w]
+			#Check word if it is valid or not 
+			validate(word)
 
 		return
 	else:
@@ -64,9 +69,16 @@ def dfs(graph,start,leng,path,wl):
 # Input The Wordament
 inw = {}
 x='a'
+multi=[]
 for i in range(4):
 	for j in range(4):
-		inw[x]=raw_input('Wordament-' + '('+str(i)+','+str(j)+') : ')
+		inp=raw_input('Wordament-' + '('+str(i)+','+str(j)+') : ')
+		inp=re.split('/',inp)
+		if len(inp) == 2:
+			inw[x]= '$'
+			multi=inp
+		else:
+			inw[x]=inp[0]
 		x=chr(ord(x)+1)
 
 words = {'a' : ['b','e','f'] , 'b' : ['a','c','e','f','g'], 'c' : ['b','f','g','h','d'], 'd' : ['c','g','h'], 'e' : ['a','b','f','i','j'] , 'f' : ['a','b','c','e','g','i','j','k'], 'g' : ['b','c','d','f','h','j','k','l'], 'h' : ['d','g','c','k','l'],'m' : ['i','j','n'] , 'n' : ['m','i','j','k','o'], 'o' : ['n','j','k','l','p'], 'p' : ['o','k','l'], 'i' : ['e','f','j','n','m'] , 'j' : ['e','f','g','m','n','i','o','k'], 'k' : ['g','o','n','f','h','j','p','l'], 'l' : ['h','g','o','k','p'] }
