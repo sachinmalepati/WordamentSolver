@@ -9,6 +9,8 @@ Run the program and enter the characters row wise.
 
 Problems :
 
-- If same word can be obtained in different ways, then all of them  are shown. Instead we need only one.
+- Updating the word.txt file so that more words could be found. Presently ~50% of words could be found.
 
-- In wordament some times each grid will contain two characters. So modify the program to solve this problem.
+- if suppose there is no word starting with a particular prefix then we can ignore the prefix for furthermore calculations(words of greater length with same prefix)
+
+- implement using OCR
