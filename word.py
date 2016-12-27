@@ -1,6 +1,26 @@
 import sys
 import string
 
+
+
+
+#Binary Search
+def binarySearch(alist,item):
+	f=0
+	l=len(alist)-1
+	exist=False
+	while f<=l and not exist:
+		mid=(f+l)//2
+		if alist[mid] == item:
+			exist=True
+		else:
+			if item<alist[mid]:
+				l=mid-1
+			else:
+				f=mid+1
+	return exist
+
+
 #DFS to find patterns
 def dfs(graph,start,leng,path,wl):
 
@@ -10,9 +30,22 @@ def dfs(graph,start,leng,path,wl):
 			word += inw[w]
 
 		#Check word if it is valid or not 
-		#print word
-		if word in wordlist:
+		
+
+		#Binary Search
+
+		#It is traversing through all words but only some are detected. Why ?
+		if binarySearch(wordlist,word):
 			print word
+		else:
+			print "Not Found"
+
+		#Linear Search
+
+		#Working Fine - But slow
+
+		#if word in wordlist:
+		#	print word
 
 
 		return
