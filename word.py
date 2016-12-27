@@ -34,7 +34,7 @@ def dfs(graph,start,leng,path,wl):
 
 		#Binary Search
 
-		#It is traversing through all words but only some are detected. Why ?
+		#Working Fine - Fast :D
 		if binarySearch(wordlist,word):
 			print word
 
