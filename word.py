@@ -37,8 +37,6 @@ def dfs(graph,start,leng,path,wl):
 		#It is traversing through all words but only some are detected. Why ?
 		if binarySearch(wordlist,word):
 			print word
-		else:
-			print "Not Found"
 
 		#Linear Search
 
@@ -86,9 +84,10 @@ def loadWords():
 	return wordlist
 
 wordlist = loadWords()
+wordlist = sorted(wordlist)
 
 
-for i in range(3,9):
+for i in range(3,10):
 	for j in words:
 		path = [j]
 		dfs(words,j,1,path,i)
