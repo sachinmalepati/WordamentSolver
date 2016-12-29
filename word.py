@@ -47,6 +47,11 @@ def dfs(graph,start,leng,path,wl):
 					word2 += inw[w]
 			validate(word1)
 			validate(word2)
+		elif '#' in path:
+			if path[-1] == '#':
+				for w in path:
+					word += inw[w]
+				validate(string.replace(word,'#',endsWith))
 		else:
 			for w in path:
 				word += inw[w]
@@ -73,12 +78,16 @@ multi=[]
 for i in range(4):
 	for j in range(4):
 		inp=raw_input('Wordament-' + '('+str(i)+','+str(j)+') : ')
-		inp=re.split('/',inp)
-		if len(inp) == 2:
+		if '/' in inp:
+			inp=re.split('/',inp)
 			inw[x]= '$'
 			multi=inp
+		elif '-' in inp:
+			inw[x] = '#' 
+			endsWith = inp[1:]
 		else:
-			inw[x]=inp[0]
+			inw[x]=inp
+		print inw[x]
 		x=chr(ord(x)+1)
 
 words = {'a' : ['b','e','f'] , 'b' : ['a','c','e','f','g'], 'c' : ['b','f','g','h','d'], 'd' : ['c','g','h'], 'e' : ['a','b','f','i','j'] , 'f' : ['a','b','c','e','g','i','j','k'], 'g' : ['b','c','d','f','h','j','k','l'], 'h' : ['d','g','c','k','l'],'m' : ['i','j','n'] , 'n' : ['m','i','j','k','o'], 'o' : ['n','j','k','l','p'], 'p' : ['o','k','l'], 'i' : ['e','f','j','n','m'] , 'j' : ['e','f','g','m','n','i','o','k'], 'k' : ['g','o','n','f','h','j','p','l'], 'l' : ['h','g','o','k','p'] }
