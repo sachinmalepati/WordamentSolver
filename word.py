@@ -35,27 +35,16 @@ def dfs(graph,start,leng,path,wl):
 
 	if leng>=wl:
 		word=''
-		word1=''
-		word2=''
-		if '$' in path:
-			for w in path:
-				if inw[w] == '$':
-					word1 += multi[0]
-					word2 += multi[1]
-				else:
-					word1 += inw[w]
-					word2 += inw[w]
-			validate(word1)
-			validate(word2)
-		elif '#' in path:
-			if path[-1] == '#':
-				for w in path:
-					word += inw[w]
+		
+		for w in path:
+			word += inw[w]
+		if '$' in word:
+			validate(string.replace(word,'$',multi[0]))
+			validate(string.replace(word,'$',multi[1]))
+		elif '#' in word:
+			if word[-1] == '#':
 				validate(string.replace(word,'#',endsWith))
 		else:
-			for w in path:
-				word += inw[w]
-			#Check word if it is valid or not 
 			validate(word)
 
 		return
@@ -75,6 +64,7 @@ def dfs(graph,start,leng,path,wl):
 inw = {}
 x='a'
 multi=[]
+endsWith=''
 for i in range(4):
 	for j in range(4):
 		inp=raw_input('Wordament-' + '('+str(i)+','+str(j)+') : ')
@@ -85,6 +75,7 @@ for i in range(4):
 		elif '-' in inp:
 			inw[x] = '#' 
 			endsWith = inp[1:]
+			print endsWith
 		else:
 			inw[x]=inp
 		print inw[x]
